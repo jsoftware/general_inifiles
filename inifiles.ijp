@@ -1,0 +1,43 @@
+NB. project file: c:/users/rsherloc/documents/j602-user/jsrc/addons/general/inifiles/inifiles
+
+coclass 'jproject'
+
+PRIMARYFILES=: '~Addons/general/inifiles/inifiles_src'
+
+PRIMARYLIBS=: 0 : 0
+files
+regex
+)
+
+DEVFILES=: ''
+
+DEVLIBS=: ''
+
+OTHERFILES=: 0 : 0
+~Addons/general/inifiles/manifest.ijs
+~Addons/general/inifiles/test.ijs
+~Addons/general/inifiles/history.txt
+~Addons/general/inifiles/test.ini
+)
+
+TARGETFILE=: '~Addons/general/inifiles/inifiles.ijs'
+
+TARGETLOCALE=: 'rgsini'
+
+TARGETHEADER=: ''
+
+TARGETEXTRA=: ''
+
+BUILDOPTS=: 0 1 0 0 0 0 0
+
+PREBUILDFILE=: ''
+
+POSTBUILDFILE=: ''
+
+TESTFILE=: ''
+
+NOTES=: ''
+
+VERSION=: ''
+
+WINDOWS=: ''
