@@ -4,10 +4,8 @@ CAPTION=: 'Platform neutral interface for INI files'
 
 DESCRIPTION=: 0 : 0
 Reads/writes one (or more) keys from/to files in INI format.
-The INI files source can be files stored on disk, or a string read
-from a database or zip file.
-Uses regex built into J to parse INI formats so is not dependent 
-on Windows API.
+The INI files source can be files stored on disk, or a string read from a database or zip file.
+Uses regex funtionality built into J to parse INI formats and is therefore not dependent on Windows API.
 
 Copyright 2008 (C) Ric Sherlock
 )

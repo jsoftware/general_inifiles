@@ -100,6 +100,5 @@ NB. Work with multiple keynames at once
    res4=: writeIniStrings keys2upd8,.<INIPATH
    res5=: getIniValues keys2get,.<INIPATH
    'results should match. Test 9e' assert res5 -: {."1 keys2upd8
-NB.! test writing multiple keys at once
    
    'All tests passed OK'

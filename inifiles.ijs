@@ -7,7 +7,6 @@ script_z_ '~system/main/regex.ijs'
 coclass 'rgsini'
 
 
-
 NB.*getIniAllSections v Gets all the keynames and values in an INI file
 NB. returns 5-column boxed table,
 NB.      0{"1 lowercase sectionnames, 1{"1 lowercase keynames,
@@ -194,22 +193,6 @@ writeIniStrings=: 3 : 0
   ini writeIniAllSections 0{::fln NB. write ini boxed table to file
 )
 
-NB.*writePPString v Writes key and key value to an INI file
-NB. returns Boolean, 1 if wrote OK, otherwise 0.
-NB. y is 4-item list of boxed info on key value to write
-NB.         0{ The full path to the INI file
-NB.         1{ Section Name
-NB.         2{ Key Name
-NB.         3{ The values to write  (string, numeric list or
-NB.                         list of boxed literals and/or numbers)
-writePPString=: 3 : 0
-  require 'winapi'
-  'fnme snme knme val'=. y
-  val=. makeString val
-  res=. 'WritePrivateProfileStringA'win32api snme;knme;val;fnme
-  0{:: res
-)
-
 NB. =========================================================
 NB. Verbs local to rgsini locale
 
@@ -293,7 +276,6 @@ getIniIndex_z_=: getIniIndex_rgsini_
 updateIniStrings_z_=: updateIniStrings_rgsini_
 writeIniAllSections_z_=: writeIniAllSections_rgsini_
 writeIniStrings_z_=: writeIniStrings_rgsini_
-writePPString_z_=: writePPString_rgsini_
 makeVals_z_=: makeVals_rgsini_
 
 
