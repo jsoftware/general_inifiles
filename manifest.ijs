@@ -12,7 +12,7 @@ Copyright 2008 (C) Ric Sherlock
 
 LABCATEGORY=: 'General'
 
-VERSION=: '1.0.0'
+VERSION=: '1.0.1'
 
 RELEASE=: 'j602'
 
