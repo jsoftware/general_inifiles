@@ -34,7 +34,7 @@ PREBUILDFILE=: ''
 
 POSTBUILDFILE=: ''
 
-TESTFILE=: ''
+TESTFILE=: '~Addons/general/inifiles/test_src.ijs'
 
 NOTES=: ''
 

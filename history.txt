@@ -1,5 +1,8 @@
 general/inifiles - change history
 
+== 1.0.2 ==
+ * an empty key name never matches existing key
+
 == 1.0.1 ==
  * remove writePPString verb
 

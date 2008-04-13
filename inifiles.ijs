@@ -75,6 +75,7 @@ getIniIndex=: 3 :0
     kys=. secn,.keyn
   end.
   i=. tbl i. boxtolower kys
+  i=. (#ini) (I.keyn=a:)}i NB. empty keynames never match
   i;< parsed#ini  NB. return parsed ini if not given in x
 )
 
@@ -157,7 +158,7 @@ updateIniStrings=: 3 : 0
   if. -.*#ini do. ini=. x end. NB. x was parsed Ini
   msk=. i<#ini NB. existing keys to amend
   ini=. (msk#val) (<(msk#i);4) } ini
-  msk=. -.msk NB. new key names to append
+  msk=. (-.msk) *. a:~:knme NB. new, non-empty key names to append
   ini=. ini, (boxtolower@(2&{."1) ,. ]) msk#snme,.knme,.val
 )
 
