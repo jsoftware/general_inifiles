@@ -32,7 +32,7 @@ NB. Test4: Difference between getIniString and getIniValue
    ]res3=: ini1 getIniValue 'Border'
    res4=: getIniValue 'Border';'formats';INIPATH
    ]res5=: 4+ini1 getIniValue 'Border'
-   'results do not match. Test4a' assert res1 -: ' ' join_rgsini_ res2
+   'results do not match. Test4a' assert res2 -: makeVals res1
    'results do not match. Test4b' assert res3&-: each res4;<_4+res5
 
 NB. Test5: updateIniString and get it again
