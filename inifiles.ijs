@@ -14,6 +14,7 @@ NB.      2{"1 sectionnames, 3{"1 keynames, 4{"1 keyvalues and comments
 NB. y is literal filename of Ini file to read. (Empty if x is given)
 NB. x is optional. Either string contents of Ini file,
 NB.      or 5-column boxed table result of parseIni
+NB. Where both x & y are given x is used in preference.
 getIniAllSections=: 3 :0
   '' getIniAllSections y
   :
@@ -48,15 +49,15 @@ getIniSectionNames=: 3 : 0
 
 NB.*getIniIndex v returns row index of INI key in parsed INI file
 NB. returns 2-item boxed list
-NB.     0{ contains numeric list of row indicies of INI keys in parsed INI file
-NB.     1{ contains parsed INI file if not given in x
-NB. y is literal, or 1,2 or 3-item boxed list.
-NB.      literal or 0{:: y is key name to look up
-NB.      1{:: y is optional section name of Ini to look for key in
-NB.      2{:: is optional file name of Ini file to read.
+NB.     0{:: numeric list of row indicies of INI keys in parsed INI file
+NB.     1{:: parsed INI file if not given in x
+NB. y is one of: literal ; 1,2 or 3-item boxed list ; 1,2 or 3-column boxed table.
+NB.      literal, 0{:: or 0{"1 is key name(s) to look up
+NB.      1{:: or 1{"1 is optional section name(s) of Ini to look for key in
+NB.      2{:: or 2{"1 is optional file name of Ini file to read.
 NB. x is optional. Either string contents of Ini file,
 NB.      or 5-column table result of parsing Ini file using parseIni
-NB. keyname lookup is case-insensitive
+NB. Keyname lookup is case-insensitive
 getIniIndex=: 3 :0
   '' getIniIndex y
   :
@@ -79,16 +80,16 @@ getIniIndex=: 3 :0
   i;< parsed#ini  NB. return parsed ini if not given in x
 )
 
-NB.*getIniStrings v returns INI key value string from INI array
-NB. returns INI key values as list of boxed strings
-NB. y is literal, or 1,2,3 or 4-item boxed list.
-NB.      literal or 0{:: y is key name to look up
-NB.      1{:: y is optional section name of Ini to look for key in
-NB.      2{:: is optional file name of Ini file to read.
-NB.      3{:: is optional comment delimiter (defaults to '#')
+NB.*getIniStrings v returns INI key value string(s) from INI array
+NB. returns one or more INI key values as list of boxed strings
+NB. y is one of: literal; 1,2,3 or 4-item boxed list; 1,2,3 or 4-column boxed table.
+NB.      literal, 0{:: or 0{"1 is key name(s) to look up
+NB.      1{:: or 1{"1 is optional section name(s) of Ini to look for key in
+NB.      2{:: or 2{"1 is optional file name of Ini file to read.
+NB.      3{:: or 3{"1 is optional comment delimiter (defaults to '#')
 NB. x is optional. Either string contents of Ini file,
 NB.      or 5-column table result of parsing Ini file using parseIni
-NB. keyname lookup is case-insensitive
+NB. Keyname lookup is case-insensitive
 getIniStrings=: 3 : 0
   '' getIniStrings y
   :
@@ -99,6 +100,7 @@ getIniStrings=: 3 : 0
   dtb@(delim&taketo) each (<i;4){ ini,a:
 )
 
+NB.*getIniString v returns single, unboxed key value string from INI array
 getIniString=: 3 : 0
   '' getIniString y
   :
@@ -106,18 +108,19 @@ getIniString=: 3 : 0
 )
 
 NB.*getIniValues v returns INI key value(s) from an INI array
-NB. returns INI key string as boxed list of values
-NB.      (numeric list or boxed list of literals)
-NB. y is literal, or 1,2,3 or 4-item boxed list.
-NB.      literal or 0{:: y is key name to look up
-NB.      1{:: y is optional section name of Ini to look for key in
-NB.      2{:: is optional file name of Ini file to read.
-NB.      3{:: is optional comment delimiter (defaults to '#')
+NB. returns one or more INI key values as boxed list of 
+NB.      interpreted strings (literal, numeric list or boxed list of literals)
+NB. y is one of: literal; 1,2,3 or 4-item boxed list; 1,2,3 or 4-column boxed table.
+NB.     literal, 0{:: or 0{"1 is key name(s) to look up
+NB.     1{:: or 1{"1 is optional section name(s) of Ini to look for key in
+NB.     2{:: or 2{"1 is optional file name of Ini file to read.
+NB.     3{:: or 3{"1 is optional comment delimiter (defaults to '#')
 NB. x is optional. Either string contents of Ini file,
 NB.      or 5-column table result of parsing Ini file using parseIni
-NB. keyname lookup is case-insensitive
+NB. Keyname lookup is case-insensitive
 getIniValues=: [: makeVals&.> getIniStrings
 
+NB.*getIniValue v returns single, unboxed key value from INI array
 getIniValue=: [: makeVals getIniString
 
 NB.*makeVals v Interprets a string as numeric or list of boxed literals
@@ -140,15 +143,16 @@ makeVals=: 3 : 0
 
 NB.*updateIniStrings v Writes key and key value to an INI file
 NB. returns updated 5-column boxed table.
-NB. y is 2,3,4 or 5-item boxed list.
-NB.      0{:: y is key value to write
-NB.      1{:: y is key name to write
-NB.      2{:: y is section name of Ini to look for key in
-NB.      3{:: y is optional file name of Ini file.
-NB.      4{:: y is optional comment delimiter (defaults to '#')
+NB. y is 2,3,4 or 5-item boxed list OR 2,3,4 or 5-column boxed table.
+NB.     0{:: or 0{"1 is key value(s) to update
+NB.     1{:: or 1{"1 is key name(s) to update
+NB.     2{:: or 2{"1 is section name(s) of Ini to look for key in
+NB.     3{:: or 3{"1 is optional file name of Ini file.
+NB.     4{:: or 4{"1 is optional comment delimiter (defaults to '#')
 NB. x is optional. Either string contents of Ini file,
 NB.      or 5-column table result of parsing Ini file using parseIni
-NB. keyname lookup is case-insensitive
+NB. Keyname lookup is case-insensitive
+NB. Sections and keys not found in current Ini are appended.
 updateIniStrings=: 3 : 0
   '' updateIniStrings y
   :
@@ -177,15 +181,17 @@ writeIniAllSections=: 4 : 0
 
 NB.*writeIniStrings v Writes key and key value to an INI file
 NB. returns Boolean, 1 if wrote OK, otherwise 0.
-NB. y is 2,3,4 or 5-item boxed list.
-NB.      0{:: y is key value to write
-NB.      1{:: y is key name to write
-NB.      2{:: y is section name of Ini to look for key in
-NB.      3{:: y is file name of Ini file to (read and) write.
-NB.      4{:: y is optional comment delimiter (defaults to '#')
+NB. y is 2,3,4 or 5-item boxed list OR 2,3,4 or 5-column boxed table.
+NB.     0{:: or 0{"1 is key value(s) to write
+NB.     1{:: or 1{"1 is key name(s) to write
+NB.     2{:: or 2{"1 is section name(s) of Ini to look for key in
+NB.     3{:: or 3{"1 is file name of Ini file to write to.
+NB.     4{:: or 4{"1 is optional comment delimiter (defaults to '#')
 NB. x is optional. Either string contents of Ini file,
 NB.      or 5-column table result of parsing Ini file using parseIni
-NB. keyname lookup is case-insensitive
+NB. Keyname lookup is case-insensitive
+NB. If x is not given, the Ini file will be read from and written to the file name in y
+NB. Sections and keys not found in current Ini are appended.
 writeIniStrings=: 3 : 0
   '' writeIniStrings y
   :
