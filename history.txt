@@ -1,5 +1,8 @@
 general/inifiles - change history
 
+== 1.0.4 ==
+ * More documentation edits
+ 
 == 1.0.3 ==
  * Improved documentation of verbs
 
