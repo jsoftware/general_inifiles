@@ -273,7 +273,7 @@ parseIniSection=: 3 : 0
   >(_2{. [: <;._1 '==',]) &.> keys NB. box on '='
 )
 
-patsection=: rxcomp '\[[[:alnum:]]+\]' NB. compile pattern
+patsection=: rxcomp '^\[[[:alnum:]]+\]' NB. compile pattern
 NB. patsection rxmatches inistr
 NB. rxfree patsection  NB. frees compiled pattern resources
 

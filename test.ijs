@@ -1,7 +1,7 @@
 NB. Tests for inifiles
 NB. To run all tests, select all file contents and choose Run|Selection
 
-   load '~addons/general/inifiles/inifiles.ijs'
+   load 'general/inifiles'
    INIPATH=: jpath '~temp/test.ini'
    NB. copy test.ini to temp folder
    INIPATH fwrites~ freads jpath '~addons/general/inifiles/test.ini'
@@ -11,6 +11,11 @@ NB. Test1: test that parseIni and makeIni are inverse of each other
    ini1=. parseIni_rgsini_ freads INIPATH
    ini2=: parseIni_rgsini_ makeIni_rgsini_ ini1
    'inis do not match. Test1' assert ini1-:ini2
+
+NB. Test1a: test section names correctly parsed
+   snames=. ;:'Control Formats EmptySection User'
+   ]res1=: getIniSectionNames_rgsini_ INIPATH
+   'section names not correctly parsed. Test1a' assert res1 -: snames
 
 NB. Test2: test different forms of ini input
    ]ini1=: getIniAllSections INIPATH

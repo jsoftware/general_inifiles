@@ -1,4 +1,4 @@
-NB. built from project: ~user/jsrc/addons/general/inifiles/inifiles
+NB. built from project: ~Addons/general/inifiles/inifiles
 NB. verbs for reading from & writing to INI files
 
 script_z_ '~system/main/files.ijs'
@@ -280,7 +280,7 @@ parseIniSection=: 3 : 0
   >(_2{. [: <;._1 '==',]) &.> keys NB. box on '='
 )
 
-patsection=: rxcomp '\[[[:alnum:]]+\]' NB. compile pattern
+patsection=: rxcomp '^\[[[:alnum:]]+\]' NB. compile pattern
 NB. patsection rxmatches inistr
 NB. rxfree patsection  NB. frees compiled pattern resources
 

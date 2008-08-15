@@ -1,5 +1,8 @@
 general/inifiles - change history
 
+== 1.0.5 ==
+ * fix: regex search for section title more robust
+
 == 1.0.4 ==
  * More documentation edits
  
