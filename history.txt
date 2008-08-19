@@ -1,5 +1,8 @@
 general/inifiles - change history
 
+== 1.0.6 ==
+ * chg: standardize testing methodology
+
 == 1.0.5 ==
  * fix: regex search for section title more robust
 

@@ -22,6 +22,6 @@ FILES=: 0 : 0
 history.txt
 manifest.ijs
 inifiles.ijs
-test.ijs
+test_inifiles.ijs
 test.ini
 )

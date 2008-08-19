@@ -1,6 +1,6 @@
 NB. test
 buildproject_jproject_ ''
-load TARGETFILE_jproject_
-open '~Addons/general/inifiles/test.ijs'
-NB. Select entire contents of test.ijs (Ctrl+a)
-NB. Run selection (Ctrl+e)
+loadtarget_jproject_ ''
+TestPath=. getpath_j_ (#getpath_j_ TARGETFILE_jproject_)}.TESTFILE_jproject_
+TestFile=.'test_',(#@getpath_j_ }. ]) TARGETFILE_jproject_
+loadscript_jproject_ TestPath,TestFile
