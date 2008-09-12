@@ -1,8 +1,14 @@
-NB. project file: ~Addons/general/inifiles/inifiles
+NB. project file: c:/users/rsherloc/documents/j602-user/jsrc/addons/general/inifiles/inifiles
 
 coclass 'jproject'
 
-PRIMARYFILES=: '~Addons/general/inifiles/inifiles_src'
+PRIMARYFILES=: 0 : 0
+~Addons/general/inifiles/init
+~Addons/general/inifiles/utils
+~Addons/general/inifiles/fromini
+~Addons/general/inifiles/toini
+~Addons/general/inifiles/zfns
+)
 
 PRIMARYLIBS=: 0 : 0
 files
