@@ -1,6 +1,7 @@
 general/inifiles - change history
 
 == 1.0.6 ==
+ * fix: error in test
  * chg: minor code improvements
  * chg: standardize testing methodology
  * chg: split up source
