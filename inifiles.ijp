@@ -1,13 +1,13 @@
-NB. project file: c:/users/rsherloc/documents/j602-user/jsrc/addons/general/inifiles/inifiles
+NB. project file: ~Addons/general/inifiles/inifiles
 
 coclass 'jproject'
 
 PRIMARYFILES=: 0 : 0
-~Addons/general/inifiles/init
-~Addons/general/inifiles/utils
-~Addons/general/inifiles/fromini
-~Addons/general/inifiles/toini
-~Addons/general/inifiles/zfns
+~Addons/general/inifiles/source/init
+~Addons/general/inifiles/source/utils
+~Addons/general/inifiles/source/fromini
+~Addons/general/inifiles/source/toini
+~Addons/general/inifiles/source/zfns
 )
 
 PRIMARYLIBS=: 0 : 0
@@ -22,8 +22,8 @@ DEVLIBS=: ''
 OTHERFILES=: 0 : 0
 ~Addons/general/inifiles/history.txt
 ~Addons/general/inifiles/manifest.ijs
-~Addons/general/inifiles/test.ini
-~Addons/general/inifiles/test_inifiles.ijs
+~Addons/general/inifiles/test/test.ini
+~Addons/general/inifiles/test/test_inifiles.ijs
 )
 
 TARGETFILE=: '~Addons/general/inifiles/inifiles.ijs'
@@ -40,7 +40,7 @@ PREBUILDFILE=: ''
 
 POSTBUILDFILE=: ''
 
-TESTFILE=: '~Addons/general/inifiles/test_src.ijs'
+TESTFILE=: '~Addons/general/inifiles/test/test_src.ijs'
 
 NOTES=: ''
 
