@@ -1,4 +1,4 @@
-NB. project file: ~Addons/general/inifiles/inifiles
+NB. project file: c:/users/rsherloc/documents/j602-user/jsrc/addons/general/inifiles/inifiles
 
 coclass 'jproject'
 
@@ -28,7 +28,7 @@ OTHERFILES=: 0 : 0
 
 TARGETFILE=: '~Addons/general/inifiles/inifiles.ijs'
 
-TARGETLOCALE=: 'rgsini'
+TARGETLOCALE=: ''
 
 TARGETHEADER=: ''
 
