@@ -1,6 +1,7 @@
 NB. built from project: ~Addons/general/inifiles/inifiles
 NB. =========================================================
-NB. verbs for reading from & writing to INI files
+NB. general/inifiles
+NB. Read from & write to INI files
 
 script_z_ '~system/main/files.ijs'
 script_z_ '~system/main/regex.ijs'
@@ -43,14 +44,14 @@ makeVals=: 3 : 0
   _999999 makeVals y
   :
   err=. x
-  if. L.y do. y return. end. NB. already boxed
-  val=. ', ' charsub y  NB. values delimited by commas and/or spaces
+  if. L.y do. y return. end.  NB. already boxed
+  val=. ', ' charsub y        NB. values delimited by commas and/or spaces
   if. -.+./err= nums=. err&". val do. val=. nums end.
   if. ' ' e. val do. val=. <;._1 ' ',deb val end.
   val
 )
 
-patsection=: rxcomp '^\[[[:alnum:]]+\]' NB. compile pattern
+patsection=: rxcomp '^\[[[:alnum:]]+\]'  NB. compile pattern
 NB. patsection rxmatches inistr
 NB. rxfree patsection  NB. frees compiled pattern resources
 
@@ -63,8 +64,8 @@ NB. returns: 5-column boxed table
 NB.       (lc section name;lc key name;section name;key name;key string & comments)
 NB. y is: string contents of an Ini file
 parseIni=: 3 :0
-  ini=. }.(patsection&rxmatches rxcut ]) y NB. cut on section names & drop first
-  'snmes secs'=. <"1 |: (] $~ 2 ,~ -:@#) ini NB. reshape to 2-column table
+  ini=. }.(patsection&rxmatches rxcut ]) y    NB. cut on section names & drop first
+  'snmes secs'=. <"1 |: (] $~ 2 ,~ -:@#) ini  NB. reshape to 2-column table
   snmes=. (<'[]')-.~each snmes
   secs=. parseIniSection each secs
   nkys=. 1 >. #&> secs
@@ -74,8 +75,8 @@ parseIni=: 3 :0
 
 NB.*parseIniSection v Parse content of INI file section
 parseIniSection=: 3 : 0
-  keys=. }.<;._2 (],LF -. {:) y NB. box each line (using LF) and drop first
-  msk=. 0< #@> keys NB. lines of non-zero length
+  keys=. }.<;._2 (],LF -. {:) y    NB. box each line (using LF) and drop first
+  msk=. 0< #@> keys                NB. lines of non-zero length
   keys=. msk#keys
   >(_2{. [: <;._1 '==',]) &.> keys NB. box on '='
 )
@@ -95,13 +96,13 @@ getIniAllSections=: 3 :0
   :
   fln=. 0{:: ,boxopen y
   ini=. x
-  if. -.*#ini do. NB. read Ini from file
-    if. -.fexist fln do. '' return. end. NB. file not found or given
+  if. -.*#ini do.             NB. read Ini from file
+    if. -.fexist fln do. '' return. end.  NB. file not found or given
     ini=. freads fln
   end.
-  if. (L.=0:) ini do. NB. parse string contents of Ini file
+  if. (L.=0:) ini do.         NB. parse string contents of Ini file
     ini=. parseIni ini
-  else. NB. x was already parsed
+  else.                       NB. x was already parsed
     ini
   end.
 )
@@ -144,19 +145,19 @@ getIniIndex=: 3 :0
   ini=. x
   'All keys must be from same file.' assert 1=#~.fln
   ini=. ini getIniAllSections 0{::fln
-  if. -.*#ini do. '' return. end. NB. error (reading Ini from file)
+  if. -.*#ini do. '' return. end.  NB. error (reading Ini from file)
   parsed=. (L.=0:) x
   NB. look up keyn in 5-column table ini
-  if. *./a: = secn do. NB. no section names given so look up keyn ignoring section
+  if. *./a: = secn do.             NB. no section names given so look up keyn ignoring section
     tbl=. 1{"1 ini
     kys=. keyn
-  else. NB. look up keyn within section
+  else.                            NB. look up keyn within section
     tbl=. 2{."1 ini
     kys=. secn,.keyn
   end.
   i=. tbl i. boxtolower kys
-  i=. (#ini) (I.keyn=a:)}i NB. empty keynames never match
-  i;< parsed#ini  NB. return parsed ini if not given in x
+  i=. (#ini) (I.keyn=a:)}i         NB. empty keynames never match
+  i;< parsed#ini                   NB. return parsed ini if not given in x
 )
 
 NB. ---------------------------------------------------------
@@ -176,8 +177,8 @@ getIniStrings=: 3 : 0
   :
   'i ini'=. 2{.!.a: x getIniIndex y
   delim=. 3{:: 4{.{.mktbl boxopen y
-  if. 0=#delim do. delim=. '#' end. NB. default comment delimiter is #
-  if. -.*#ini do. ini=. x end. NB. x was parsed Ini
+  if. 0=#delim do. delim=. '#' end.  NB. default comment delimiter is #
+  if. -.*#ini do. ini=. x end.       NB. x was parsed Ini
   dtb@(delim&taketo) each (<i;4){ ini,a:
 )
 
@@ -219,11 +220,11 @@ NB. form: makeIni IniTable
 NB. returns: literal in format of INI file.
 NB. y is: 5-column boxed table (result of parseIni)
 makeIni=: 3 : 0
-  ini=. _3{."1 y NB. drop lowercase columns
+  ini=. _3{."1 y            NB. drop lowercase columns
   'snmes keys'=. split |: ini
   secs=. snmes </. |: keys
   ini=. (~.snmes) makeIniSection each secs
-  (],LF -. {:) LF join ini NB. join with LFs and ensure trailing LF
+  (],LF -. {:) LF join ini  NB. join with LFs and ensure trailing LF
 )
 
 NB.*makeIniSection v Creates INI formated string of an INI section
@@ -234,10 +235,10 @@ NB. x is: literal section name for all items in y
 makeIniSection=: 4 : 0
   'snme sec'=. x;<y
   snme=. '[',snme,']'
-  msk=. -.*#&>{."1 sec NB. where no keyname
+  msk=. -.*#&>{."1 sec  NB. where no keyname
   sec=. <@('='&join)"1 sec
-  sec=. msk }.&.> sec  NB. drop first ('=') where no keyname
-  LF join snme;sec  NB. join lines with LFs
+  sec=. msk }.&.> sec   NB. drop first ('=') where no keyname
+  LF join snme;sec      NB. join lines with LFs
 )
 
 NB. ---------------------------------------------------------
@@ -260,10 +261,10 @@ updateIniStrings=: 3 : 0
   'val knme snme fnme delim'=. <"1|: 5{."1 y=. mktbl boxopen y
   val=. makeString each val
   'i ini'=. 2{.!.a: x getIniIndex }."1 y
-  if. -.*#ini do. ini=. x end. NB. x was parsed Ini
-  msk=. i<#ini NB. existing keys to amend
+  if. -.*#ini do. ini=. x end.  NB. x was parsed Ini
+  msk=. i<#ini                  NB. existing keys to amend
   ini=. (msk#val) (<(msk#i);4) } ini
-  msk=. (-.msk) *. a:~:knme NB. new, non-empty key names to append
+  msk=. (-.msk) *. a:~:knme     NB. new, non-empty key names to append
   ini=. ini, (boxtolower@(2&{."1) ,. ]) msk#snme,.knme,.val
 )
 
@@ -276,7 +277,7 @@ NB. x is: ini file in literal or boxed table form.
 writeIniAllSections=: 4 : 0
   fln=. 0{:: ,boxopen y
   ini=. x
-  if. (L.=1:) ini do. NB. reformat to string
+  if. (L.=1:) ini do.  NB. reformat to string
     ini=. makeIni ini
   end.
   ini fwrites fln
@@ -302,7 +303,7 @@ writeIniStrings=: 3 : 0
   :
   ini=. x updateIniStrings y
   'All keys must be from same file.' assert 1=# fln=. ~. 3{"1 mktbl y
-  ini writeIniAllSections 0{::fln NB. write ini boxed table to file
+  ini writeIniAllSections 0{::fln  NB. write ini boxed table to file
 )
 
 

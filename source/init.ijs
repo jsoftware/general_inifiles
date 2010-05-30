@@ -1,4 +1,5 @@
 NB. =========================================================
-NB. verbs for reading from & writing to INI files
+NB. general/inifiles
+NB. Read from & write to INI files
 
 coclass 'rgsini'
