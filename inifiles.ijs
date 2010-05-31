@@ -3,10 +3,8 @@ NB. =========================================================
 NB. general/inifiles
 NB. Read from & write to INI files
 
-script_z_ '~system/main/files.ijs'
-script_z_ '~system/main/regex.ijs'
 
-
+require 'files regex'
 coclass 'rgsini'
 
 NB. =========================================================

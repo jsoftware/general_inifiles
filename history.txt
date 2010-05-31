@@ -1,5 +1,8 @@
 general/inifiles - change history
 
+== 1.0.7 ==
+ * chg: J701 compatibility
+
 == 1.0.6 ==
  * fix: error in test
  * chg: minor code improvements

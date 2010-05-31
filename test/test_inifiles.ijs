@@ -6,11 +6,12 @@ Note 'To run all tests:'
 )
 
 loc=. 3 : '> (4!:4 <''y'') { 4!:3 $0'
-PATH=. getpath_j_ loc''
+PATH=. getpath_j_ jpath loc''
 
 INIPATH=: jpath '~temp/test.ini'
 NB. copy test.ini to temp folder
 INIPATH fwrites~ freads PATH,'test.ini'
+'File(s) not found' assert fexist INIPATH;PATH,'test.ini'
 freads INIPATH
 
 test=: 3 : 0
@@ -36,8 +37,8 @@ test=: 3 : 0
   ]res1=. getIniString 'BrkAtModule';'Control';INIPATH
   res2=. (freads INIPATH) getIniString 'BrkAtModule';'Control'
   res3=. ini1 getIniString 'brkatmodule';'control' NB. names are not case sensitive
-  res4=. ini1 getIniString 'BrkAtModule' NB. section not required if keynames unique
-  res5=. ini1 getIniValue 'BrkAtModule' NB. getIniValue is same as getIniString for literal value
+  res4=. ini1 getIniString 'BrkAtModule'           NB. section not required if keynames unique
+  res5=. ini1 getIniValue 'BrkAtModule'            NB. getIniValue is same as getIniString for literal value
   'results do not match. Test3' assert *./ res1&-: every res5;res4;res2;<res3
   
   NB. Test4: Difference between getIniString and getIniValue

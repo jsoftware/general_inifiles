@@ -1,4 +1,4 @@
-NB. project file: ~Addons/general/inifiles/inifiles
+NB. project file: c:/users/rsherloc/documents/j602-user/jsrc/addons/general/inifiles/inifiles
 
 coclass 'jproject'
 
@@ -10,10 +10,7 @@ PRIMARYFILES=: 0 : 0
 ~Addons/general/inifiles/source/zfns
 )
 
-PRIMARYLIBS=: 0 : 0
-files
-regex
-)
+PRIMARYLIBS=: ''
 
 DEVFILES=: ''
 
