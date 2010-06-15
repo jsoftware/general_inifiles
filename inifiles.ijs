@@ -1,12 +1,9 @@
-NB. built from project: ~Addons/general/inifiles/inifiles
 NB. =========================================================
 NB. general/inifiles
 NB. Read from & write to INI files
 
-
 require 'files regex'
 coclass 'rgsini'
-
 NB. =========================================================
 NB. utils for rgsini
 
@@ -52,8 +49,6 @@ makeVals=: 3 : 0
 patsection=: rxcomp '^\[[[:alnum:]]+\]'  NB. compile pattern
 NB. patsection rxmatches inistr
 NB. rxfree patsection  NB. frees compiled pattern resources
-
-
 NB. =========================================================
 NB. reading ini structures, strings and files
 
@@ -208,8 +203,6 @@ NB. ---------------------------------------------------------
 NB.*getIniValue v Gets single, unboxed key value from INI array
 NB. form: [IniFileContent] getIniValue KeyName[;SectionName[;IniFileName[;CommentDelimiter]]]
 getIniValue=: [: makeVals getIniString
-
-
 NB. =========================================================
 NB. writing ini structures, strings and files
 
@@ -303,8 +296,6 @@ writeIniStrings=: 3 : 0
   'All keys must be from same file.' assert 1=# fln=. ~. 3{"1 mktbl y
   ini writeIniAllSections 0{::fln  NB. write ini boxed table to file
 )
-
-
 NB. =========================================================
 NB. Definitions exported to z locale
 
@@ -318,4 +309,3 @@ updateIniStrings_z_=: updateIniStrings_rgsini_
 writeIniAllSections_z_=: writeIniAllSections_rgsini_
 writeIniStrings_z_=: writeIniStrings_rgsini_
 makeVals_z_=: makeVals_rgsini_
-
