@@ -12,9 +12,9 @@ Copyright 2008 (C) Ric Sherlock
 
 LABCATEGORY=: 'General'
 
-VERSION=: '1.0.10'
+VERSION=: '1.0.11'
 
-RELEASE=: 'j602 j701 j801 j802'
+RELEASE=: 'j602 j701 j801 j802 j803'
 
 PLATFORMS=: ''
 
